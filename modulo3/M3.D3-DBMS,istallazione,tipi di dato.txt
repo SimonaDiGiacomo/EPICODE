@@ -1,0 +1,71 @@
+CREATE TABLE Clienti(
+        CodCliente,
+		Nome CHAR (25) NOT NULL,
+		Cognome CHAR (45) NOT NULL,
+		Recapito INT (10))
+CREATE TABLE Negozio(
+        NegozioID,
+		Indirizzo VARCHAR (30) NOT NULL,
+		Recapito INT (10) NOT NULL)
+CREATE TABLE Impiegati(
+       CodiceFiscale VARCHAR (16) NOT NULL,
+	   Nome CHAR (25) NOT NULL,
+	   Cognome CHAR (45) NOT NULL,
+	   TitoloDiStudio CHAR (45),
+       Recapito INT (10))
+CREATE TABLE SarvizioImpiegati(
+       CodiceFiscale VARCHAR (16) NOT NULL,
+       NumeroServizio INT NOT NULL,
+       NegozioID,
+       Mansione CHAR (20) NOT NULL,
+       DataInizio DATE NOT NULL,
+       DataFine DATE NOT NULL)
+CREATE TABLE Prodotti(
+       CodProdotto,
+       Titolo TEXT (50) NOT NULL,
+       NomeSviluppatore CHAR (45),
+       AnnoDistribuzione YEAR,
+       Genere CHAR (20),
+       Prezzo DOUBLE)
+CREATE TABLE Collocazione(
+       CodSettore,
+       NegozioID NOT NULL,
+       CodProdotto NOT NULL,
+       N°Copie INT NOT NULL)
+CREATE TABLE Acquisti(
+       CodDocumento,
+       CodCliente NOT NULL,
+       DataOrdine DATE NOT NULL)
+CREATE TABLE Vendite(
+       CodDocumento,
+       LineaOrdine NOT NULL,
+       CodProdotto NOT NULL,
+       Prezzo NOT NULL,
+       Quantità INT NOT NULL,
+       ImportoTotale INT NOT NULL)
+	   
+INSERT INTO Clienti(CodCliente,Nome,Cognome,Recapito)
+VALUES (1,Sergio,Caccavalle,3459871265),(2,Clara,Damia,3485796625),(3,Fabio,Valle,3365487221)
+
+INSERT INTO Acquisti (CodDocumento,CodCliente,DataOrdine)
+VALUES (06022023-1,1,06/02/2023),(04032023-2,2,04/03/2023),(05032023-3,3,05/03/2023)
+
+INSERT INTO Vendite (CodDocumento,LineaOrdine,CodProdotto,Prezzo,Quantità,ImportoTotale)
+VALUES (06022023-1,1,GM-AZIONE,€ 25,00,1,€ 25,00),(06022023-1,2,GM-STRATEGIA,€ 35,00,1,€ 335,00),(04032023-2,1,GM-AZIONE,€ 15,00,2,€ 30,00)
+
+INSERT INTO Prodotti(CodProdotto,Titolo,NomeSviluppatore,AnnoDistribuzione,Genere,Prezzo)
+VALUES (GM-AZIONE,Elden Ring,XXX,2023,AZIONE,€ 25,00),(GM-RUOLO,Alien,XXX,2021, RUOLO, € 35,00),(GM-STRATEGIA,Crusader Kings III,XXX,2023,STRATEGIA,€ 15,00)
+
+INSERT INTO Collocazione(CodSettore,NegozioID,CodProdotto,N°Copie)
+VALUES (1,01,GM-AZIONE,5),(2,02,GM-RUOLO,2),(3,03,GM-STRATEGIA,1)
+
+INSET INTO Negozio(NegozioID,Indirizzo,Recapito)
+VALUES (01,Via...,0857543271),(02,Viale...,0861247856),(03,P.le...,0810235975)
+
+INSERT INTO SarvizioImpiegati(CodiceFiscale,NumeroServizio,NegozioID,Mansione,DataInizio,DataFine
+VALUES (GNMSRN95B15C632Y,1,01,Cassiere,02/01/2023,02/05/2023),(LGNCLD99M44L123D,1,01,Venditore,02/01/2023,02/06/2023),(RSSSMN93S25B456B,1,03,Commesso,15/05/2023,30/06/2023)
+
+INSERT INTO Impiegati(CodiceFiscale,Nome,Cognome,TitoloDiStudio,Recapito)
+VALUES (GNMSRN95B15C632Y,Serena,XXX,XXX,XXX),(LGNCLD99M44L123D,Claudio,YYY,YYY,YYY),(RSSSMN93S25B456B,Simona,ZZZ,ZZZ,ZZZ)
+
+ 
